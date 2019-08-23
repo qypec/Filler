@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/23 17:41:26 by yquaro           ###   ########.fr       */
+/*   Created: 2019/08/22 18:28:37 by yquaro            #+#    #+#             */
+/*   Updated: 2019/08/23 17:38:19 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "filler.h"
 
-# include "../libft/includes/libft.h"
-# include <stdio.h>
-# include <fcntl.h>
-
-# define GET_MARKER(player_number) ((player_number == '1') ? 'O' : 'X')
-
-char				**g_plateau;
-char				**g_piece;
-char				g_marker;
-
-void				read_plateau_and_piece(void);
-
-#endif
+int main()
+{
+	read_plateau_and_piece();
+}

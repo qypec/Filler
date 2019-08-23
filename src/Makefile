@@ -6,14 +6,14 @@
 #    By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/13 21:16:45 by yquaro            #+#    #+#              #
-#    Updated: 2019/08/22 17:21:14 by yquaro           ###   ########.fr        #
+#    Updated: 2019/08/23 17:39:48 by yquaro           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 include ../includes/filler.mk
 
 DIR_O = ../lib
-SOURCES =
+SOURCES = main.c parse_input.c
 OBJECTS = $(addprefix $(DIR_O)/,$(patsubst %.c,%.o,$(SOURCES)))
 
 all: print $(OBJECTS)

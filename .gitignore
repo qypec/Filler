@@ -1,0 +1,7 @@
+*.o
+/.vscode
+*.a
+yquaro.filler
+/a.out
+/*.dSYM
+test
