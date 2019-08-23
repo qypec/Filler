@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/23 19:03:15 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/23 21:00:26 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,23 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-# define GET_MARKER(player_number) ((player_number == '1') ? 'O' : 'X')
+# define IDENTIFY_MARKER(player_number) ((player_number == '1') ? 'O' : 'X')
 
-char				**g_plateau;
-char				**g_piece;
+/**/	int					g_fd;
+
+typedef struct		s_token
+{
+	char			**field;
+	int				height;
+	int				length;
+}					t_token;
+
+t_token				*g_map;
+t_token				*g_piece;
 char				g_marker;
 
-void				read_plateau_and_piece(void);
+t_token				*init_token(void);
+
+void				input_parsing(void);
 
 #endif

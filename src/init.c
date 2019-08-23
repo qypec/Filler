@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_input.c                                      :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/23 17:26:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/23 19:09:50 by yquaro           ###   ########.fr       */
+/*   Created: 2019/08/23 19:52:25 by yquaro            #+#    #+#             */
+/*   Updated: 2019/08/23 20:45:39 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void			get_player_number(void)
+t_token				*init_token(void)
 {
-	char			symb;
-	char			*line;
+	t_token			*token;
 
-/**/int fd;
-/**/fd = open("src/test", O_RDONLY);
-	get_next_line(fd, &line);
-	symb = *(ft_strchr(line, 'p') + 1);
-	g_marker = GET_MARKER(symb);
-/**/close(fd);
-}
-
-// static void			get_plateau(void)
-// {
-	
-// }
-
-void				read_plateau_and_piece(void)
-{
-	get_player_number();
+	if ((token = (t_token *)malloc(sizeof(t_token))) == NULL)
+		exit(-1);
+	token->field = NULL;
+	token->height = 0;
+	token->length = 0;
+	return (token);
 }

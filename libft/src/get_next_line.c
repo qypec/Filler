@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 18:21:54 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/23 18:55:22 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/23 19:23:21 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int					get_next_line(const int fd, char **line)
 
 	if (fd < 0)
 		return (-1);
+	if (*line != NULL)
+		ft_strdel(line);
 	reading_status = 1;
 	buff = ft_buffinit(BUFF_SIZE);
 	while ((ret = read(fd, &symb, 1)) > 0 && symb != '\n')

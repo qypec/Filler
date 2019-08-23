@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 18:28:37 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/23 17:38:19 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/23 20:58:40 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int main()
 {
-	read_plateau_and_piece();
+	g_map = init_token();
+	g_piece = init_token();
+	input_parsing();
 }
