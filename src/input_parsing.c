@@ -6,19 +6,19 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 17:26:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/23 21:02:35 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/24 15:54:31 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static void			get_player_number(void)
+void			get_player_number(void)
 {
 	char			symb;
 	char			*line;
 
 	line = NULL;
-	get_next_line(g_fd, &line);
+	get_next_line(0, &line);
 	symb = *(ft_strchr(line, 'p') + 1);
 	g_marker = IDENTIFY_MARKER(symb);
 	ft_strdel(&line);
@@ -52,16 +52,16 @@ static void			get_map(void)
 	const char		*field_line;
 
 	line = NULL;
-	get_next_line(g_fd, &line);
+	get_next_line(0, &line);
 	get_field_size(line, g_map);
 	if ((g_map->field = (char **)ft_matrmemalloc(sizeof(char *) * \
 									(g_map->height + 1))) == NULL)
 		exit(-1);
-	get_next_line(g_fd, &line);
+	get_next_line(0, &line);
 	i = 0;
 	while (i < g_map->height)
 	{
-		get_next_line(g_fd, &line);
+		get_next_line(0, &line);
 		field_line = ft_strchr(line, ' ') + 1;
 		g_map->field[i++] = ft_strdup(field_line);
 	}
@@ -74,7 +74,7 @@ static void			get_piece(void)
 	int				i;
 
 	line = NULL;
-	get_next_line(g_fd, &line);
+	get_next_line(0, &line);
 	get_field_size(line, g_piece);
 	if ((g_piece->field = (char **)ft_matrmemalloc(sizeof(char *) * \
 									(g_piece->height + 1))) == NULL)
@@ -82,7 +82,7 @@ static void			get_piece(void)
 	i = 0;
 	while (i < g_piece->height)
 	{
-		get_next_line(g_fd, &line);
+		get_next_line(0, &line);
 		g_piece->field[i++] = ft_strdup(line);
 	}
 	ft_strdel(&line);
@@ -90,13 +90,12 @@ static void			get_piece(void)
 
 void				input_parsing(void)
 {
-/**/	g_fd = open("test", O_RDONLY);
+// /**/ g_fd = open("test", O_RDONLY);
 
-	get_player_number();
 	get_map();
 	get_piece();
 	// ft_printf("%w\n\n", g_map->field);
 	// ft_printf("%w\n", g_piece->field);
 
-/**/	close(g_fd);
+// /**/	close(0);
 }

@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 19:52:25 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/23 20:45:39 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/24 16:36:10 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,14 @@ t_token				*init_token(void)
 	token->height = 0;
 	token->length = 0;
 	return (token);
+}
+
+void				tokendel(t_token **token)
+{
+	ft_matrdel(&((*token)->field));
+	(*token)->field = NULL;
+	(*token)->height = 0;
+	(*token)->length = 0;
+	free(*token);
+	token = NULL;
 }

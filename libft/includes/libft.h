@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/22 12:05:21 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/23 19:04:12 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/23 22:01:44 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int						ft_pow(int num, int power);
 ** ft_matr
 */
 
-char					**ft_matrsnew(size_t matr_size, ...);
+char					**ft_matrsnew(size_t matr_size, size_t line_size);
 char					**ft_matrmemalloc(size_t size);
 char					**ft_matrnew(const char *first_str, ...);
 char					**ft_matrdup(const char **matr);
