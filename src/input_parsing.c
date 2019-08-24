@@ -6,23 +6,11 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 17:26:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/24 15:54:31 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/24 18:19:42 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
-
-void			get_player_number(void)
-{
-	char			symb;
-	char			*line;
-
-	line = NULL;
-	get_next_line(0, &line);
-	symb = *(ft_strchr(line, 'p') + 1);
-	g_marker = IDENTIFY_MARKER(symb);
-	ft_strdel(&line);
-}
 
 static void			get_field_size(const char *line, t_token *token)
 {
@@ -45,7 +33,7 @@ static void			get_field_size(const char *line, t_token *token)
 	ft_buffdel(&num);
 }
 
-static void			get_map(void)
+void				map_parsing(void)
 {
 	char			*line;
 	int				i;
@@ -68,7 +56,7 @@ static void			get_map(void)
 	ft_strdel(&line);
 }
 
-static void			get_piece(void)
+void				piece_parsing(void)
 {
 	char			*line;
 	int				i;
@@ -88,14 +76,14 @@ static void			get_piece(void)
 	ft_strdel(&line);
 }
 
-void				input_parsing(void)
+void				get_player_number(void)
 {
-// /**/ g_fd = open("test", O_RDONLY);
+	char			symb;
+	char			*line;
 
-	get_map();
-	get_piece();
-	// ft_printf("%w\n\n", g_map->field);
-	// ft_printf("%w\n", g_piece->field);
-
-// /**/	close(0);
+	line = NULL;
+	get_next_line(0, &line);
+	symb = *(ft_strchr(line, 'p') + 1);
+	g_marker = IDENTIFY_MARKER(symb);
+	ft_strdel(&line);
 }

@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/24 16:36:30 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/24 18:21:01 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <fcntl.h>
 
 # define IDENTIFY_MARKER(player_number) ((player_number == '1') ? 'O' : 'X')
-
-/**/	int					g_fd;
 
 typedef struct		s_token
 {
@@ -38,11 +36,12 @@ t_token				*g_map;
 t_token				*g_piece;
 char				g_marker;
 
-t_token				*init_token(void);
-void				tokendel(t_token **token);
+void				init_token(void);
+void				tokendel(void);
 
 void				get_player_number(void);
-void				input_parsing(void);
+void				map_parsing(void);
+void				piece_parsing(void);
 int					make_a_move(void);
 
 #endif

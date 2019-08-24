@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 21:35:05 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/24 17:28:59 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/24 18:21:39 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char				**fill_subpiece(t_coord *coord)
 		}
 		i++;
 	}
-	// ft_printf("%w\n", subpiece);
 	return (subpiece);
 }
 

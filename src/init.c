@@ -6,30 +6,38 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 19:52:25 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/24 16:36:10 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/24 18:13:46 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-t_token				*init_token(void)
+void				init_token(void)
 {
-	t_token			*token;
-
-	if ((token = (t_token *)malloc(sizeof(t_token))) == NULL)
+	if ((g_map = (t_token *)malloc(sizeof(t_token))) == NULL)
 		exit(-1);
-	token->field = NULL;
-	token->height = 0;
-	token->length = 0;
-	return (token);
+	g_map->field = NULL;
+	g_map->height = 0;
+	g_map->length = 0;
+	if ((g_piece = (t_token *)malloc(sizeof(t_token))) == NULL)
+		exit(-1);
+	g_piece->field = NULL;
+	g_piece->height = 0;
+	g_piece->length = 0;
 }
 
-void				tokendel(t_token **token)
+void				tokendel(void)
 {
-	ft_matrdel(&((*token)->field));
-	(*token)->field = NULL;
-	(*token)->height = 0;
-	(*token)->length = 0;
-	free(*token);
-	token = NULL;
+	ft_matrdel(&(g_map->field));
+	g_map->field = NULL;
+	g_map->height = 0;
+	g_map->length = 0;
+	free(g_map);
+	g_map = NULL;
+	ft_matrdel(&(g_piece->field));
+	g_piece->field = NULL;
+	g_piece->height = 0;
+	g_piece->length = 0;
+	free(g_piece);
+	g_piece = NULL;
 }
