@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 21:35:05 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/28 19:41:54 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/28 19:58:08 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int					make_a_move(void)
 	init_ghostly_squares();
 	fill_central_squares_coordinates();
 	choose_optimum_way();
-
 	return (1);
 }
 
@@ -47,3 +46,4 @@ int					make_a_move(void)
 	// 										g_square->low->right_apex->y);
 	// printf("area = %d\n", g_square->low->area);
 	// printf("free_space = %d\n", g_square->low->free_space);
+
