@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/28 19:55:56 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/28 23:04:59 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 # include <fcntl.h>
 
 # define IDENTIFY_MARKER(player_number) ((player_number == '1') ? 'O' : 'X')
-# define RIVAL_MARKER(marker) ((marker == 'X') ? 'O' : 'X')
+# define RIVALS_MARKER ((g_marker == 'X') ? 'O' : 'X')
+
 # define LEFT_APEX_ABOVE_RIGHT ((g_square->central->right_apex->y <= \
 								g_square->central->left_apex->y) ? 0 : 1)
+
+# define START_DISTANCE 3
 
 typedef struct		s_token
 {

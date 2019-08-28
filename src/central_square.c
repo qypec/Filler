@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 20:31:18 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/28 17:23:43 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/28 22:19:15 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,14 @@ void				fill_central_squares_coordinates(void)
 	int				rival_sum_x;
 	int				player_sum_x;
 
-	rival_sum_x = get_xsum(RIVAL_MARKER(g_marker)) / \
-							get_shape_size(RIVAL_MARKER(g_marker));
+	rival_sum_x = get_xsum(RIVALS_MARKER) / \
+							get_shape_size(RIVALS_MARKER);
 	player_sum_x = get_xsum(g_marker) / get_shape_size(g_marker);
 	if (rival_sum_x <= player_sum_x)
 	{
 		g_square->central->left_apex->x = rival_sum_x;
-		g_square->central->left_apex->y = (get_ysum(RIVAL_MARKER(g_marker)) / \
-							get_shape_size(RIVAL_MARKER(g_marker)));
+		g_square->central->left_apex->y = (get_ysum(RIVALS_MARKER) / \
+							get_shape_size(RIVALS_MARKER));
 		g_square->central->right_apex->x = player_sum_x;
 		g_square->central->right_apex->y = (get_ysum(g_marker) / \
 							get_shape_size(g_marker));
@@ -105,8 +105,8 @@ void				fill_central_squares_coordinates(void)
 		g_square->central->left_apex->y = (get_ysum(g_marker) / \
 							get_shape_size(g_marker));
 		g_square->central->right_apex->x = rival_sum_x;
-		g_square->central->right_apex->y = (get_ysum(RIVAL_MARKER(g_marker)) / \
-							get_shape_size(RIVAL_MARKER(g_marker)));
+		g_square->central->right_apex->y = (get_ysum(RIVALS_MARKER) / \
+							get_shape_size(RIVALS_MARKER));
 	}
 	g_square->central->area = get_square_area();
 }
