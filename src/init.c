@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 19:52:25 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/26 20:40:56 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/28 19:28:31 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void				tokendel(void)
 	g_piece = NULL;
 }
 
-static t_square		*malloc_square(void)
+t_square			*malloc_square(void)
 {
 	t_square		*square;
 
@@ -57,6 +57,7 @@ static t_square		*malloc_square(void)
 	square->right_apex->x = 0;
 	square->right_apex->y = 0;
 	square->area = 0;
+	square->free_space = 0;
 	return (square);
 }
 
@@ -64,12 +65,10 @@ void				init_ghostly_squares(void)
 {
 	if ((g_square = (t_ghostly *)malloc(sizeof(t_ghostly))) == NULL)
 		exit(-1);
-	if ((g_square->optimum = malloc_square()) == NULL)
-		exit(-1);
-	if ((g_square->low = malloc_square()) == NULL)
-		exit(-1);
 	if ((g_square->central = malloc_square()) == NULL)
 		exit(-1);
+	g_square->low = NULL;
+	g_square->optimum = NULL;
 }
 
 static void			square_del(t_square **square)
@@ -79,6 +78,7 @@ static void			square_del(t_square **square)
 	(*square)->right_apex->x = 0;
 	(*square)->right_apex->y = 0;
 	(*square)->area = 0;
+	(*square)->free_space = 0;
 	free((*square)->left_apex);
 	(*square)->left_apex = NULL;
 	free((*square)->right_apex);

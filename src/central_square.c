@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 20:31:18 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/26 20:39:55 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/28 17:23:43 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int			get_xsum(char marker)
 	return (sum_x);
 }
 
-void				get_central_square_coordinates(void)
+void				fill_central_squares_coordinates(void)
 {
 	int				rival_sum_x;
 	int				player_sum_x;
