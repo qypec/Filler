@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 20:31:18 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/29 15:48:36 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/29 21:15:02 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int			get_shape_size(char marker)
 		j = -1;
 		while (++j < g_map->length)
 		{
-			if (g_map->field[i][j] == marker)
+			if (g_map->field[i][j] == marker || g_map->field[i][j] == marker + 32)
 				shape_size++;
 		}
 	}
@@ -55,7 +55,7 @@ static int			get_ysum(char marker)
 		j = -1;
 		while (++j < g_map->length)
 		{
-			if (g_map->field[i][j] == marker)
+			if (g_map->field[i][j] == marker || g_map->field[i][j] == marker + 32)
 				sum_y += i;
 		}
 	}
@@ -75,7 +75,7 @@ static int			get_xsum(char marker)
 		j = -1;
 		while (++j < g_map->length)
 		{
-			if (g_map->field[i][j] == marker)
+			if (g_map->field[i][j] == marker || g_map->field[i][j] == (marker + 32))
 				sum_x += j;
 		}
 	}

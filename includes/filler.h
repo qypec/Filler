@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/29 15:49:17 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/29 22:29:59 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ typedef struct		s_ghostly
 	t_square		*central;
 }					t_ghostly;
 
+typedef struct		s_score
+{
+	t_coord			*coord;
+	int				score;
+}					t_score;
+
 t_ghostly			*g_square;
 t_token				*g_map;
 t_token				*g_piece;
@@ -80,5 +86,7 @@ int					make_a_move(void);
 void				create_heat_map(void);
 int					is_near_players_marker(int y, int x);
 int					is_square_zone(t_square *square, int y, int x);
+
+void				put_piece(void);
 
 #endif

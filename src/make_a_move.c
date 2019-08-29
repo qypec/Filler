@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 21:35:05 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/29 17:59:55 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/29 18:01:36 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int					make_a_move(void)
 	fill_central_squares_coordinates();
 	choose_optimum_way();
 	create_heat_map();
-	
+	put_piece();
 	return (1);
 }
 

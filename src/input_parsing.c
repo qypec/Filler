@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 17:26:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/28 19:55:24 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/29 22:03:03 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ void				map_parsing(void)
 	const char		*field_line;
 
 	line = NULL;
-	get_next_line(g_fd, &line);
+	get_next_line(0, &line);
 	get_field_size(line, g_map);
 	if ((g_map->field = (char **)ft_matrmemalloc(sizeof(char *) * \
 									(g_map->height + 1))) == NULL)
 		exit(-1);
-	get_next_line(g_fd, &line);
+	get_next_line(0, &line);
 	i = 0;
 	while (i < g_map->height)
 	{
-		get_next_line(g_fd, &line);
+		get_next_line(0, &line);
 		field_line = ft_strchr(line, ' ') + 1;
 		g_map->field[i++] = ft_strdup(field_line);
 	}
@@ -62,7 +62,7 @@ void				piece_parsing(void)
 	int				i;
 
 	line = NULL;
-	get_next_line(g_fd, &line);
+	get_next_line(0, &line);
 	get_field_size(line, g_piece);
 	if ((g_piece->field = (char **)ft_matrmemalloc(sizeof(char *) * \
 									(g_piece->height + 1))) == NULL)
@@ -70,7 +70,7 @@ void				piece_parsing(void)
 	i = 0;
 	while (i < g_piece->height)
 	{
-		get_next_line(g_fd, &line);
+		get_next_line(0, &line);
 		g_piece->field[i++] = ft_strdup(line);
 	}
 	ft_strdel(&line);
@@ -82,7 +82,7 @@ void				get_player_number(void)
 	char			*line;
 
 	line = NULL;
-	get_next_line(g_fd, &line);
+	get_next_line(0, &line);
 	symb = *(ft_strchr(line, 'p') + 1);
 	g_marker = IDENTIFY_MARKER(symb);
 	ft_strdel(&line);
