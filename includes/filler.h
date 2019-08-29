@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/28 23:04:59 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/29 15:49:17 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 								g_square->central->left_apex->y) ? 0 : 1)
 
 # define START_DISTANCE 3
+# define IS_NEAR_MAPS_BORDER(y, x) ((y == 0 || y == g_map->height - 1 || \
+								x == 0 || x == g_map->length - 1) ? 1 : 0)
 
 typedef struct		s_token
 {
@@ -66,6 +68,7 @@ void				ghostly_squares_free(void);
 
 t_square			*malloc_square(void);
 
+int					get_rivals_center(char coordinate_axis);
 void				fill_central_squares_coordinates(void);
 void				choose_optimum_way(void);
 
@@ -73,5 +76,9 @@ void				get_player_number(void);
 void				map_parsing(void);
 void				piece_parsing(void);
 int					make_a_move(void);
+
+void				create_heat_map(void);
+int					is_near_players_marker(int y, int x);
+int					is_square_zone(t_square *square, int y, int x);
 
 #endif

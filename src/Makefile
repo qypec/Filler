@@ -6,7 +6,7 @@
 #    By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/13 21:16:45 by yquaro            #+#    #+#              #
-#    Updated: 2019/08/28 20:42:18 by yquaro           ###   ########.fr        #
+#    Updated: 2019/08/29 15:49:50 by yquaro           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ include ../includes/filler.mk
 
 DIR_O = ../lib
 SOURCES = main.c input_parsing.c init.c make_a_move.c central_square.c \
-			optimum_way.c
+			optimum_way.c heat_map.c temperature_value_tools.c
 OBJECTS = $(addprefix $(DIR_O)/,$(patsubst %.c,%.o,$(SOURCES)))
 
 all: print $(OBJECTS)

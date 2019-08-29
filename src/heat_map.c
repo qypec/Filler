@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 21:11:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/28 23:45:11 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/29 17:48:33 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,15 @@ static int			get_temperature_value(int y, int x, \
 {
 	int				temperature_counter;
 
-	temperature_counter = distance_counter;
-	if (g_map->field[y][x] == g_marker || \
-		g_map->field[y][x] == RIVALS_MARKER)
+	if (g_map->field[y][x] != '.')
 		return (g_map->field[y][x]);
-	temperature_counter += is_center_square(y, x);
-	temperature_counter += is_low_square(y, x);
-	temperature_counter += is_optimum_square(y, x);
-	temperature_counter += is_above_red_line(y, x);
-	temperature_counter += is_near_maps_border(y, x);
-	temperature_counter += is_near_players_marker(y, x);
+	temperature_counter = distance_counter;
+	temperature_counter -= is_square_zone(g_square->central, y, x);
+	temperature_counter += is_square_zone(g_square->low, y, x);
+	temperature_counter -= is_square_zone(g_square->optimum, y, x);
+	// temperature_counter -= is_above_red_line(y, x);
+	temperature_counter -= IS_NEAR_MAPS_BORDER(y, x);
+	temperature_counter -= is_near_players_marker(y, x);
 	return (temperature_counter);
 }
 
@@ -75,7 +74,7 @@ static void			fill_heat_map_layer(int start_x, int start_y, \
 											distance_counter);
 			x++;
 		}
-		start_y++;
+		y++;
 	}
 }
 
@@ -88,7 +87,7 @@ void				create_heat_map(void)
 	int				final_y;
 
 	distance = START_DISTANCE;
-	while (distance <= g_map->length || distance <= g_map->height)
+	while (distance <= (g_map->length * 2) || distance <= (g_map->height * 2))
 	{
 		start_x = get_start_distance_coordinate('x', distance);
 		start_y = get_start_distance_coordinate('y', distance);

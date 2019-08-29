@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 18:28:37 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/28 23:35:06 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/29 17:50:23 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,46 @@ int					get_rivals_center(char coordinate_axis)
 
 int					main()
 {
-	// g_fd = open("test", O_RDONLY);
+	g_fd = open("test", O_RDONLY);
 
-	// get_player_number();
-	// // while (1)
-	// // {
-	// 	init_token();
-	// 	map_parsing();
-	// 	piece_parsing();
-	// 	if (make_a_move() == -1)
-	// 	{
-	// 		tokendel();
-	// 		// break ;
-	// 	}
-	// // }
+	get_player_number();
+	// while (1)
+	// {
+		init_token();
+		map_parsing();
+		piece_parsing();
+		// if (make_a_move() == -1)
+		// {
+			// tokendel();
+			// break ;
+		// }
+		make_a_move();
+	// }
 	// g_marker = 0;
-	// close(g_fd);
-	char c;
 
-	c = -1;
-	printf("c = %c\n d = %d\n", c, (int)c);
+	int i;
+	int	j;
+
+	i = 0;
+	while (g_map->field[i] != NULL)
+	{
+		j = 0;
+		while (j < g_map->length)
+		{
+			if (g_map->field[i][j] == 'O' || g_map->field[i][j] == 'X' || g_map->field[i][j] == '.')
+			{
+				ft_printf("%3c", g_map->field[i][j]);
+			}
+			else
+			{
+				ft_printf("%3d", (int)g_map->field[i][j]);
+			}
+			j++;
+		}
+		write(1, "\n", 1);
+		i++;
+	}
+	// ft_printf("%w", g_map->field);
+	close(g_fd);
 	return (0);
 }
