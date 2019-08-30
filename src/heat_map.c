@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 21:11:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/29 17:48:33 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/30 19:49:54 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,20 @@ static int			get_temperature_value(int y, int x, \
 	if (g_map->field[y][x] != '.')
 		return (g_map->field[y][x]);
 	temperature_counter = distance_counter;
-	temperature_counter -= is_square_zone(g_square->central, y, x);
-	temperature_counter += is_square_zone(g_square->low, y, x);
-	temperature_counter -= is_square_zone(g_square->optimum, y, x);
+	if (is_square_zone(g_square->central, y, x))
+		temperature_counter -= 3;
+	if (is_square_zone(g_square->low, y, x))
+	temperature_counter += 2;
+	if (is_square_zone(g_square->optimum, y, x))
+		temperature_counter -= 2;
 	// temperature_counter -= is_above_red_line(y, x);
-	temperature_counter -= IS_NEAR_MAPS_BORDER(y, x);
-	temperature_counter -= is_near_players_marker(y, x);
+	if (IS_NEAR_MAPS_BORDER(y, x))
+		temperature_counter -= 4;
+	// temperature_counter -= is_near_marker(y, x, g_marker);
+	if (is_near_marker(y, x, RIVALS_MARKER))
+	temperature_counter -= 5;
+	// if (is_near_marker(y, x, RIVALS_MARKER + 32))
+		// temperature_counter -= 5;
 	return (temperature_counter);
 }
 

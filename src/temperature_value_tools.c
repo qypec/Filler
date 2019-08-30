@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:45:02 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/29 16:30:20 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/30 19:34:22 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int					is_square_zone(t_square *square, int y, int x)
 	{
 		upper_apex = square->right_apex->y;
 		down_apex = square->left_apex->y;
-	}
+	} 
 	if ((y >= upper_apex && y <= down_apex) && \
 		(x >= square->left_apex->x && x <= square->right_apex->x))
 		return (1);
@@ -41,31 +41,39 @@ static int			is_within_map(int changed_y, int changed_x)
 	return (0);
 }
 
-int					is_near_players_marker(int y, int x)
+int					is_near_marker(int y, int x, char marker)
 {
-	if (is_within_map(y + 1, x - 1) && \
-					g_map->field[y + 1][x - 1] == g_marker)
-		return (1);
-	if (is_within_map(y + 1, x) && \
-					g_map->field[y + 1][x] == g_marker)
-		return (1);
-	if (is_within_map(y + 1, x + 1) && \
-					g_map->field[y + 1][x + 1] == g_marker)
-		return (1);
-	if (is_within_map(y, x + 1) && \
-					g_map->field[y][x + 1] == g_marker)
-		return (1);
-	if (is_within_map(y - 1, x + 1) && \
-					g_map->field[y - 1][x + 1] == g_marker)
-		return (1);
-	if (is_within_map(y - 1, x) && \
-					g_map->field[y - 1][x] == g_marker)
-		return (1);
-	if (is_within_map(y - 1, x - 1) && \
-					g_map->field[y - 1][x - 1] == g_marker)
-		return (1);
-	if (is_within_map(y, x - 1) && \
-					g_map->field[y][x - 1] == g_marker)
-		return (1);
+	int				i;
+	int				j;
+
+	i = 1;
+	while (i < g_piece->height)
+	{
+		if (is_within_map(y + i, x - i) && \
+						g_map->field[y + i][x - i] == marker)
+			return (1);
+		if (is_within_map(y + i, x) && \
+						g_map->field[y + i][x] == marker)
+			return (1);
+		if (is_within_map(y + i, x + i) && \
+						g_map->field[y + i][x + i] == marker)
+			return (1);
+		if (is_within_map(y, x + i) && \
+						g_map->field[y][x + i] == marker)
+			return (1);
+		if (is_within_map(y - i, x + i) && \
+						g_map->field[y - i][x + i] == marker)
+			return (1);
+		if (is_within_map(y - i, x) && \
+						g_map->field[y - i][x] == marker)
+			return (1);
+		if (is_within_map(y - i, x - i) && \
+						g_map->field[y - i][x - i] == marker)
+			return (1);
+		if (is_within_map(y, x - i) && \
+						g_map->field[y][x - i] == marker)
+			return (1);
+		i++;
+	}
 	return (0);
 }

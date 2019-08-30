@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/30 17:06:36 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/30 19:13:55 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int					piece_parsing(void);
 int					make_a_move(void);
 
 void				create_heat_map(void);
-int					is_near_players_marker(int y, int x);
+int					is_near_marker(int y, int x, char marker);
 int					is_square_zone(t_square *square, int y, int x);
 
 int					put_piece(void);
