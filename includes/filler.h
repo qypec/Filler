@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/29 22:29:59 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/30 17:06:36 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ t_token				*g_piece;
 char				g_marker;
 int					g_fd;
 
+int					is_marker(char c, char marker);
+
 void				init_token(void);
 void				tokendel(void);
 void				init_ghostly_squares(void);
@@ -78,15 +80,15 @@ int					get_rivals_center(char coordinate_axis);
 void				fill_central_squares_coordinates(void);
 void				choose_optimum_way(void);
 
-void				get_player_number(void);
-void				map_parsing(void);
-void				piece_parsing(void);
+int					get_player_number(void);
+int					map_parsing(void);
+int					piece_parsing(void);
 int					make_a_move(void);
 
 void				create_heat_map(void);
 int					is_near_players_marker(int y, int x);
 int					is_square_zone(t_square *square, int y, int x);
 
-void				put_piece(void);
+int					put_piece(void);
 
 #endif

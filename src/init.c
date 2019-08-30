@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 19:52:25 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/28 20:42:23 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/30 16:46:42 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ void				init_token(void)
 
 void				tokendel(void)
 {
+	if (g_map == NULL)
+		return ;
 	ft_matrdel(&(g_map->field));
 	g_map->field = NULL;
 	g_map->height = 0;
 	g_map->length = 0;
 	free(g_map);
 	g_map = NULL;
+	if (g_piece == NULL)
+		return ;
 	ft_matrdel(&(g_piece->field));
 	g_piece->field = NULL;
 	g_piece->height = 0;

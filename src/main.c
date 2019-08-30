@@ -6,11 +6,18 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 18:28:37 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/29 22:02:40 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/08/30 17:54:43 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+int					is_marker(char c, char marker)
+{
+	if (c == marker || c == marker + 32)
+		return (1);
+	return (0);
+}
 
 int					get_rivals_center(char coordinate_axis)
 {
@@ -28,20 +35,22 @@ int					get_rivals_center(char coordinate_axis)
 int					main()
 {
 	// g_fd = open("test", O_RDONLY);
-
-	get_player_number();
+	g_map = NULL;
+	g_piece = NULL;
+	if (get_player_number() == -1)
+		return (0);
 	while (1)
 	{
 		init_token();
-		map_parsing();
-		piece_parsing();
-		// if (make_a_move() == -1)
-		// {
-			// tokendel();
-			// break ;
-		// }
-		make_a_move();
+		if (map_parsing() == -1)
+			break ;
+		if (piece_parsing() == -1)
+			break ;
+		if (make_a_move() == -1)
+			break ;
+		tokendel();
 	}
+	tokendel();
 	// g_marker = 0;
 
 	// int i;
