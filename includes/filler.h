@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/30 19:13:55 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/02 17:03:43 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,7 @@
 # define IDENTIFY_MARKER(player_number) ((player_number == '1') ? 'O' : 'X')
 # define RIVALS_MARKER ((g_marker == 'X') ? 'O' : 'X')
 
-# define LEFT_APEX_ABOVE_RIGHT ((g_square->central->right_apex->y <= \
-								g_square->central->left_apex->y) ? 0 : 1)
-
 # define START_DISTANCE 3
-# define IS_NEAR_MAPS_BORDER(y, x) ((y == 0 || y == g_map->height - 1 || \
-								x == 0 || x == g_map->length - 1) ? 1 : 0)
 
 typedef struct		s_token
 {
@@ -73,6 +68,8 @@ void				init_token(void);
 void				tokendel(void);
 void				init_ghostly_squares(void);
 void				ghostly_squares_free(void);
+t_score				*init_score(void);
+void				score_del(t_score **min_score);
 
 t_square			*malloc_square(void);
 
@@ -88,6 +85,7 @@ int					make_a_move(void);
 void				create_heat_map(void);
 int					is_near_marker(int y, int x, char marker);
 int					is_square_zone(t_square *square, int y, int x);
+int					is_near_border(int y, int x);
 
 int					put_piece(void);
 

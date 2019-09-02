@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 17:26:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/30 17:09:29 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/02 17:02:26 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ int					piece_parsing(void)
 
 	line = NULL;
 	if (get_next_line(0, &line) <= 0)
+	{
+		ft_strdel(&line);
 		return (-1);
+	}
 	get_field_size(line, g_piece);
 	if ((g_piece->field = (char **)ft_matrmemalloc(sizeof(char *) * \
 									(g_piece->height + 1))) == NULL)
@@ -76,7 +79,10 @@ int					piece_parsing(void)
 	while (i < g_piece->height)
 	{
 		if (get_next_line(0, &line) <= 0)
+		{
+			ft_strdel(&line);
 			return (-1);
+		}
 		g_piece->field[i++] = ft_strdup(line);
 	}
 	ft_strdel(&line);
@@ -90,7 +96,10 @@ int					get_player_number(void)
 
 	line = NULL;
 	if (get_next_line(0, &line) <= 0)
+	{
+		ft_strdel(&line);
 		return (-1);
+	}
 	symb = *(ft_strchr(line, 'p') + 1);
 	g_marker = IDENTIFY_MARKER(symb);
 	ft_strdel(&line);

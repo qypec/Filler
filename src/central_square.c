@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 20:31:18 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/29 21:15:02 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/02 17:04:10 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int			get_shape_size(char marker)
 		j = -1;
 		while (++j < g_map->length)
 		{
-			if (g_map->field[i][j] == marker || g_map->field[i][j] == marker + 32)
+			if (is_marker(g_map->field[i][j], marker))
 				shape_size++;
 		}
 	}
@@ -55,7 +55,7 @@ static int			get_ysum(char marker)
 		j = -1;
 		while (++j < g_map->length)
 		{
-			if (g_map->field[i][j] == marker || g_map->field[i][j] == marker + 32)
+			if (is_marker(g_map->field[i][j], marker))
 				sum_y += i;
 		}
 	}
@@ -75,7 +75,7 @@ static int			get_xsum(char marker)
 		j = -1;
 		while (++j < g_map->length)
 		{
-			if (g_map->field[i][j] == marker || g_map->field[i][j] == (marker + 32))
+			if (is_marker(g_map->field[i][j], marker))
 				sum_x += j;
 		}
 	}
@@ -87,26 +87,25 @@ void				fill_central_squares_coordinates(void)
 	int				rival_sum_x;
 	int				player_sum_x;
 
-	rival_sum_x = get_xsum(RIVALS_MARKER) / \
-							get_shape_size(RIVALS_MARKER);
+	rival_sum_x = get_xsum(RIVALS_MARKER) / get_shape_size(RIVALS_MARKER);
 	player_sum_x = get_xsum(g_marker) / get_shape_size(g_marker);
 	if (rival_sum_x <= player_sum_x)
 	{
 		g_square->central->left_apex->x = rival_sum_x;
-		g_square->central->left_apex->y = (get_ysum(RIVALS_MARKER) / \
-							get_shape_size(RIVALS_MARKER));
+		g_square->central->left_apex->y = \
+				(get_ysum(RIVALS_MARKER) / get_shape_size(RIVALS_MARKER));
 		g_square->central->right_apex->x = player_sum_x;
-		g_square->central->right_apex->y = (get_ysum(g_marker) / \
-							get_shape_size(g_marker));
+		g_square->central->right_apex->y = \
+				(get_ysum(g_marker) / get_shape_size(g_marker));
 	}
 	else
 	{
 		g_square->central->left_apex->x = player_sum_x;
-		g_square->central->left_apex->y = (get_ysum(g_marker) / \
-							get_shape_size(g_marker));
+		g_square->central->left_apex->y = \
+				(get_ysum(g_marker) / get_shape_size(g_marker));
 		g_square->central->right_apex->x = rival_sum_x;
-		g_square->central->right_apex->y = (get_ysum(RIVALS_MARKER) / \
-							get_shape_size(RIVALS_MARKER));
+		g_square->central->right_apex->y = \
+				(get_ysum(RIVALS_MARKER) / get_shape_size(RIVALS_MARKER));
 	}
 	g_square->central->area = get_square_area();
 }

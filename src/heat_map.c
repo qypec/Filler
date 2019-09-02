@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 21:11:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/30 19:49:54 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/02 17:00:10 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int			get_final_distance_coordinate(char coordinate_axis, \
 	int				coord;
 	int				borders_coordinate;
 
+	borders_coordinate = 0;
 	coord = get_rivals_center(coordinate_axis) + ROUND_DOWN(distance / 2);
 	if (coordinate_axis == 'x')
 		borders_coordinate = g_map->length - 1;
@@ -26,7 +27,6 @@ static int			get_final_distance_coordinate(char coordinate_axis, \
 	if (coord > borders_coordinate)
 		return (borders_coordinate);
 	return (coord);
-
 }
 
 static int			get_start_distance_coordinate(char coordinate_axis, \
@@ -49,19 +49,15 @@ static int			get_temperature_value(int y, int x, \
 		return (g_map->field[y][x]);
 	temperature_counter = distance_counter;
 	if (is_square_zone(g_square->central, y, x))
-		temperature_counter -= 3;
+		temperature_counter -= 2;
 	if (is_square_zone(g_square->low, y, x))
-	temperature_counter += 2;
+		temperature_counter += 2;
 	if (is_square_zone(g_square->optimum, y, x))
 		temperature_counter -= 2;
-	// temperature_counter -= is_above_red_line(y, x);
-	if (IS_NEAR_MAPS_BORDER(y, x))
+	if (is_near_border(y, x))
 		temperature_counter -= 4;
-	// temperature_counter -= is_near_marker(y, x, g_marker);
 	if (is_near_marker(y, x, RIVALS_MARKER))
-	temperature_counter -= 5;
-	// if (is_near_marker(y, x, RIVALS_MARKER + 32))
-		// temperature_counter -= 5;
+		temperature_counter -= 5;
 	return (temperature_counter);
 }
 

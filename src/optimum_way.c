@@ -6,11 +6,18 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 21:10:58 by yquaro            #+#    #+#             */
-/*   Updated: 2019/08/28 19:42:26 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/02 15:27:23 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+static int			is_left_apex_above_right(void)
+{
+	if (g_square->central->left_apex->y <= g_square->central->right_apex->y)
+		return (1);
+	return (0);
+}
 
 static void			set_apex_coorinates(t_square *square1, t_square *square2)
 {
@@ -20,7 +27,7 @@ static void			set_apex_coorinates(t_square *square1, t_square *square2)
 	square2->right_apex->x = g_map->length - 1;
 	square2->right_apex->y = g_square->central->right_apex->y;
 	square2->left_apex->x = g_square->central->left_apex->x;
-	if (LEFT_APEX_ABOVE_RIGHT)
+	if (is_left_apex_above_right())
 	{
 		square1->right_apex->y = g_map->height - 1;
 		square2->left_apex->y = 0;
@@ -40,7 +47,7 @@ void				get_squares_free_space(t_square *square)
 
 	i = square->right_apex->y;
 	height = square->left_apex->y;
-	if (LEFT_APEX_ABOVE_RIGHT)
+	if (is_left_apex_above_right())
 	{
 		i = square->left_apex->y;
 		height = square->right_apex->y;
