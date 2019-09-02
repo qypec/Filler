@@ -6,11 +6,18 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 17:26:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/02 17:02:26 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/02 17:22:22 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+/*
+** Parses the size of a map or piece.
+**
+** @param	N/A
+** @return	-1  if get_next_line returned an error
+*/
 
 static void			get_field_size(const char *line, t_token *token)
 {
@@ -32,6 +39,13 @@ static void			get_field_size(const char *line, t_token *token)
 	token->length = ft_atoi(num->str);
 	ft_buffdel(&num);
 }
+
+/*
+** Parses the map.
+**
+** @param	N/A
+** @return	-1  if get_next_line returned an error
+*/
 
 int					map_parsing(void)
 {
@@ -59,6 +73,13 @@ int					map_parsing(void)
 	ft_strdel(&line);
 	return (1);
 }
+
+/*
+** Parses the figure that the player needs to put on the map.
+**
+** @param	N/A
+** @return	-1  if get_next_line returned an error
+*/
 
 int					piece_parsing(void)
 {
@@ -88,6 +109,14 @@ int					piece_parsing(void)
 	ft_strdel(&line);
 	return (1);
 }
+
+/*
+** Parses the first line received from the virtual machine 
+** to determine the player’s marker.
+**
+** @param	N/A
+** @return	-1  if get_next_line returned an error
+*/
 
 int					get_player_number(void)
 {

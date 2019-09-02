@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 20:31:18 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/02 17:04:10 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/02 17:49:21 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,14 @@ static int			get_xsum(char marker)
 	}
 	return (sum_x);
 }
+
+/*
+** Counts the center of the opponent’s and player’s figures, 
+** writes this to the appropriate structure.
+**
+** @param N/A
+** @return N/A
+*/
 
 void				fill_central_squares_coordinates(void)
 {
