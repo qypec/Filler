@@ -46,59 +46,57 @@ void				tokendel(void)
 	g_piece = NULL;
 }
 
-t_square			*malloc_square(void)
+t_rectangle			*malloc_rectangle(void)
 {
-	t_square		*square;
+	t_rectangle		*rectangle;
 
-	if ((square = (t_square *)malloc(sizeof(t_square))) == NULL)
+	if ((rectangle = (t_rectangle *)malloc(sizeof(t_rectangle))) == NULL)
 		return (NULL);
-	if ((square->left_apex = (t_coord *)malloc(sizeof(t_coord))) == NULL)
+	if ((rectangle->left_apex = (t_coord *)malloc(sizeof(t_coord))) == NULL)
 		return (NULL);
-	if ((square->right_apex = (t_coord *)malloc(sizeof(t_coord))) == NULL)
+	if ((rectangle->right_apex = (t_coord *)malloc(sizeof(t_coord))) == NULL)
 		return (NULL);
-	square->left_apex->x = 0;
-	square->left_apex->y = 0;
-	square->right_apex->x = 0;
-	square->right_apex->y = 0;
-	square->area = 0;
-	square->free_space = 0;
-	return (square);
+	rectangle->left_apex->x = 0;
+	rectangle->left_apex->y = 0;
+	rectangle->right_apex->x = 0;
+	rectangle->right_apex->y = 0;
+	rectangle->free_space = 0;
+	return (rectangle);
 }
 
-void				init_ghostly_squares(void)
+void				init_ghostly_rectangles(void)
 {
-	if ((g_square = (t_ghostly *)malloc(sizeof(t_ghostly))) == NULL)
+	if ((g_rectangle = (t_ghostly *)malloc(sizeof(t_ghostly))) == NULL)
 		exit(-1);
-	if ((g_square->central = malloc_square()) == NULL)
+	if ((g_rectangle->central = malloc_rectangle()) == NULL)
 		exit(-1);
-	g_square->low = NULL;
-	g_square->optimum = NULL;
+	g_rectangle->low = NULL;
+	g_rectangle->optimum = NULL;
 }
 
-static void			square_del(t_square **square)
+static void			rectangle_del(t_rectangle **rectangle)
 {
-	(*square)->left_apex->x = 0;
-	(*square)->left_apex->y = 0;
-	(*square)->right_apex->x = 0;
-	(*square)->right_apex->y = 0;
-	(*square)->area = 0;
-	(*square)->free_space = 0;
-	free((*square)->left_apex);
-	(*square)->left_apex = NULL;
-	free((*square)->right_apex);
-	(*square)->right_apex = NULL;
-	free(*square);
-	square = NULL;
+	(*rectangle)->left_apex->x = 0;
+	(*rectangle)->left_apex->y = 0;
+	(*rectangle)->right_apex->x = 0;
+	(*rectangle)->right_apex->y = 0;
+	(*rectangle)->free_space = 0;
+	free((*rectangle)->left_apex);
+	(*rectangle)->left_apex = NULL;
+	free((*rectangle)->right_apex);
+	(*rectangle)->right_apex = NULL;
+	free(*rectangle);
+	rectangle = NULL;
 }
 
-void				ghostly_squares_free(void)
+void				ghostly_rectangles_free(void)
 {
-	square_del(&(g_square->optimum));
-	g_square->optimum = NULL;
-	square_del(&(g_square->low));
-	g_square->low = NULL;
-	square_del(&(g_square->central));
-	g_square->central = NULL;
-	free(g_square);
-	g_square = NULL;
+	rectangle_del(&(g_rectangle->optimum));
+	g_rectangle->optimum = NULL;
+	rectangle_del(&(g_rectangle->low));
+	g_rectangle->low = NULL;
+	rectangle_del(&(g_rectangle->central));
+	g_rectangle->central = NULL;
+	free(g_rectangle);
+	g_rectangle = NULL;
 }

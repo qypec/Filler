@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   central_square.c                                   :+:      :+:    :+:   */
+/*   central_rectangle.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 20:31:18 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/02 17:49:21 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 11:39:44 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static int			get_square_area(void)
-{
-	int				height;
-	int				length;
-
-	height = g_square->central->right_apex->y - g_square->central->left_apex->y;
-	length = g_square->central->right_apex->x - g_square->central->left_apex->x;
-	return ((ft_abs(height) + 1) * (ft_abs(length) + 1));
-}
+/*
+** Counts the number of cells
+**
+** @param	marker	player`s marker
+** @return 	shape_size	number of cells
+*/
 
 static int			get_shape_size(char marker)
 {
@@ -42,6 +39,13 @@ static int			get_shape_size(char marker)
 	return (shape_size);
 }
 
+/*
+** Counts the sum of y-coordinate of a specific player.
+**
+** @param	marker	player`s marker
+** @return 	sum_y
+*/
+
 static int			get_ysum(char marker)
 {
 	int				i;
@@ -61,6 +65,13 @@ static int			get_ysum(char marker)
 	}
 	return (sum_y);
 }
+
+/*
+** Counts the sum of x-coordinate of a specific player.
+**
+** @param	marker	player`s marker
+** @return 	sum_x
+*/
 
 static int			get_xsum(char marker)
 {
@@ -90,7 +101,7 @@ static int			get_xsum(char marker)
 ** @return N/A
 */
 
-void				fill_central_squares_coordinates(void)
+void				fill_central_rectangles_coordinates(void)
 {
 	int				rival_sum_x;
 	int				player_sum_x;
@@ -99,21 +110,20 @@ void				fill_central_squares_coordinates(void)
 	player_sum_x = get_xsum(g_marker) / get_shape_size(g_marker);
 	if (rival_sum_x <= player_sum_x)
 	{
-		g_square->central->left_apex->x = rival_sum_x;
-		g_square->central->left_apex->y = \
+		g_rectangle->central->left_apex->x = rival_sum_x;
+		g_rectangle->central->left_apex->y = \
 				(get_ysum(RIVALS_MARKER) / get_shape_size(RIVALS_MARKER));
-		g_square->central->right_apex->x = player_sum_x;
-		g_square->central->right_apex->y = \
+		g_rectangle->central->right_apex->x = player_sum_x;
+		g_rectangle->central->right_apex->y = \
 				(get_ysum(g_marker) / get_shape_size(g_marker));
 	}
 	else
 	{
-		g_square->central->left_apex->x = player_sum_x;
-		g_square->central->left_apex->y = \
+		g_rectangle->central->left_apex->x = player_sum_x;
+		g_rectangle->central->left_apex->y = \
 				(get_ysum(g_marker) / get_shape_size(g_marker));
-		g_square->central->right_apex->x = rival_sum_x;
-		g_square->central->right_apex->y = \
+		g_rectangle->central->right_apex->x = rival_sum_x;
+		g_rectangle->central->right_apex->y = \
 				(get_ysum(RIVALS_MARKER) / get_shape_size(RIVALS_MARKER));
 	}
-	g_square->central->area = get_square_area();
 }

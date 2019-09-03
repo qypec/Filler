@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:45:02 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/02 17:05:11 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 11:34:05 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ int					is_near_border(int y, int x)
 	return (0);
 }
 
-int					is_square_zone(t_square *square, int y, int x)
+int					is_rectangle_zone(t_rectangle *rectangle, int y, int x)
 {
 	int				upper_apex;
 	int				down_apex;
 
-	if (square->left_apex->y <= square->right_apex->y)
+	if (rectangle->left_apex->y <= rectangle->right_apex->y)
 	{
-		upper_apex = square->left_apex->y;
-		down_apex = square->right_apex->y;
+		upper_apex = rectangle->left_apex->y;
+		down_apex = rectangle->right_apex->y;
 	}
 	else
 	{
-		upper_apex = square->right_apex->y;
-		down_apex = square->left_apex->y;
+		upper_apex = rectangle->right_apex->y;
+		down_apex = rectangle->left_apex->y;
 	}
 	if ((y >= upper_apex && y <= down_apex) && \
-		(x >= square->left_apex->x && x <= square->right_apex->x))
+		(x >= rectangle->left_apex->x && x <= rectangle->right_apex->x))
 		return (1);
 	return (0);
 }

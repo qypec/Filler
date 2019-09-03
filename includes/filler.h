@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/02 17:03:43 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 11:36:22 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,18 @@ typedef struct		s_coord
 	int				y;
 }					t_coord;
 
-typedef	struct		s_square
+typedef	struct		s_rectangle
 {
 	t_coord			*left_apex;
 	t_coord			*right_apex;
-	int				area;
 	int				free_space;
-}					t_square;
+}					t_rectangle;
 
 typedef struct		s_ghostly
 {
-	t_square		*optimum;
-	t_square		*low;
-	t_square		*central;
+	t_rectangle		*optimum;
+	t_rectangle		*low;
+	t_rectangle		*central;
 }					t_ghostly;
 
 typedef struct		s_score
@@ -56,7 +55,7 @@ typedef struct		s_score
 	int				score;
 }					t_score;
 
-t_ghostly			*g_square;
+t_ghostly			*g_rectangle;
 t_token				*g_map;
 t_token				*g_piece;
 char				g_marker;
@@ -66,15 +65,15 @@ int					is_marker(char c, char marker);
 
 void				init_token(void);
 void				tokendel(void);
-void				init_ghostly_squares(void);
-void				ghostly_squares_free(void);
+void				init_ghostly_rectangles(void);
+void				ghostly_rectangles_free(void);
 t_score				*init_score(void);
 void				score_del(t_score **min_score);
 
-t_square			*malloc_square(void);
+t_rectangle			*malloc_rectangle(void);
 
 int					get_rivals_center(char coordinate_axis);
-void				fill_central_squares_coordinates(void);
+void				fill_central_rectangles_coordinates(void);
 void				choose_optimum_way(void);
 
 int					get_player_number(void);
@@ -84,7 +83,7 @@ int					make_a_move(void);
 
 void				create_heat_map(void);
 int					is_near_marker(int y, int x, char marker);
-int					is_square_zone(t_square *square, int y, int x);
+int					is_rectangle_zone(t_rectangle *rectangle, int y, int x);
 int					is_near_border(int y, int x);
 
 int					put_piece(void);

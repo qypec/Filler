@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 21:10:58 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/02 15:27:23 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 11:38:15 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,77 +14,102 @@
 
 static int			is_left_apex_above_right(void)
 {
-	if (g_square->central->left_apex->y <= g_square->central->right_apex->y)
+	if (g_rectangle->central->left_apex->y <= \
+							g_rectangle->central->right_apex->y)
 		return (1);
 	return (0);
 }
 
-static void			set_apex_coorinates(t_square *square1, t_square *square2)
+/*
+** Defines the coordinates of artificially rectangles.
+**
+** @param	rectangle structures
+** @return 	N/A
+*/
+
+static void			set_apex_coorinates(t_rectangle *rectangle1, \
+											t_rectangle *rectangle2)
 {
-	square1->left_apex->x = 0;
-	square1->left_apex->y = g_square->central->left_apex->y;
-	square1->right_apex->x = g_square->central->right_apex->x;
-	square2->right_apex->x = g_map->length - 1;
-	square2->right_apex->y = g_square->central->right_apex->y;
-	square2->left_apex->x = g_square->central->left_apex->x;
+	rectangle1->left_apex->x = 0;
+	rectangle1->left_apex->y = g_rectangle->central->left_apex->y;
+	rectangle1->right_apex->x = g_rectangle->central->right_apex->x;
+	rectangle2->right_apex->x = g_map->length - 1;
+	rectangle2->right_apex->y = g_rectangle->central->right_apex->y;
+	rectangle2->left_apex->x = g_rectangle->central->left_apex->x;
 	if (is_left_apex_above_right())
 	{
-		square1->right_apex->y = g_map->height - 1;
-		square2->left_apex->y = 0;
+		rectangle1->right_apex->y = g_map->height - 1;
+		rectangle2->left_apex->y = 0;
 	}
 	else
 	{
-		square1->right_apex->y = 0;
-		square2->left_apex->y = g_map->height - 1;
+		rectangle1->right_apex->y = 0;
+		rectangle2->left_apex->y = g_map->height - 1;
 	}
 }
 
-void				get_squares_free_space(t_square *square)
+/*
+** Counts the number of free cells in the selected rectangle.
+**
+** @param	rectangle structure
+** @return 	N/A
+*/
+
+static void			get_rectangles_free_space(t_rectangle *rectangle)
 {
 	int				i;
 	int				j;
 	int				height;
 
-	i = square->right_apex->y;
-	height = square->left_apex->y;
+	i = rectangle->right_apex->y;
+	height = rectangle->left_apex->y;
 	if (is_left_apex_above_right())
 	{
-		i = square->left_apex->y;
-		height = square->right_apex->y;
+		i = rectangle->left_apex->y;
+		height = rectangle->right_apex->y;
 	}
 	while (i <= height)
 	{
-		j = square->left_apex->x;
-		while (j <= square->right_apex->x)
+		j = rectangle->left_apex->x;
+		while (j <= rectangle->right_apex->x)
 		{
 			if (g_map->field[i][j] == '.')
-				(square->free_space)++;
+				(rectangle->free_space)++;
 			j++;
 		}
 		i++;
 	}
 }
 
+/*
+** The central rectangle artificially extends to the borders 
+** of the map in two ways. The optimal path is the one in which 
+** the largest number of free cells.
+**
+** @param	N/A
+** @return 	N/A
+*/
+
 void				choose_optimum_way(void)
 {
-	t_square		*square1;
-	t_square		*square2;
+	t_rectangle		*rectangle1;
+	t_rectangle		*rectangle2;
 
-	if ((square1 = malloc_square()) == NULL)
+	if ((rectangle1 = malloc_rectangle()) == NULL)
 		exit(-1);
-	if ((square2 = malloc_square()) == NULL)
+	if ((rectangle2 = malloc_rectangle()) == NULL)
 		exit(-1);
-	set_apex_coorinates(square1, square2);
-	get_squares_free_space(square1);
-	get_squares_free_space(square2);
-	if (square1->free_space >= square2->free_space)
+	set_apex_coorinates(rectangle1, rectangle2);
+	get_rectangles_free_space(rectangle1);
+	get_rectangles_free_space(rectangle2);
+	if (rectangle1->free_space >= rectangle2->free_space)
 	{
-		g_square->optimum = square1;
-		g_square->low = square2;
+		g_rectangle->optimum = rectangle1;
+		g_rectangle->low = rectangle2;
 	}
 	else
 	{
-		g_square->optimum = square2;
-		g_square->low = square1;
+		g_rectangle->optimum = rectangle2;
+		g_rectangle->low = rectangle1;
 	}
 }

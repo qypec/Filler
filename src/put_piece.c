@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 18:02:11 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/02 17:06:43 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 13:27:54 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,13 @@ int					is_correct_location(int y, int x)
 	return (0);
 }
 
+/*
+** Counts the sum of thermal values and overwrites
+** the score structure if the score is the smallest.
+**
+** @param	x, y	current position
+*/
+
 void				update_min_score(t_score *min_score, int y, int x)
 {
 	int				i;
@@ -90,6 +97,12 @@ void				update_min_score(t_score *min_score, int y, int x)
 	}
 }
 
+/*
+** Enumeration of possible locations of a piece.
+** Search for the smallest sum of thermal 
+** values covered by a piece.
+*/
+
 void				brute_force(t_score *min_score)
 {
 	int				y;
@@ -109,6 +122,11 @@ void				brute_force(t_score *min_score)
 		y++;
 	}
 }
+
+/*
+** Finds the optimal position to insert a piece.
+** Writes the result to standard output.
+*/
 
 int					put_piece(void)
 {

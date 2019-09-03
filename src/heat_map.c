@@ -6,11 +6,38 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 21:11:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/02 17:00:10 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 12:01:28 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+/*
+** Returns the coordinate of the opponent’s center according 
+** to the given coordinate axis.
+*/
+
+static int			get_rivals_center(char coordinate_axis)
+{
+	int				y;
+	int				x;
+
+	y = g_rectangle->central->left_apex->y;
+	x = g_rectangle->central->left_apex->x;
+	if (is_marker(g_map->field[y][x], RIVALS_MARKER))
+		return ((coordinate_axis == 'x') ? x : y);
+	y = g_rectangle->central->right_apex->y;
+	x = g_rectangle->central->right_apex->x;
+	return ((coordinate_axis == 'x') ? x : y);
+}
+
+/*
+** Defines the final coordinate for the current fill layer.
+**
+** @param	coordinate_axis		the coordinate to be determined
+** @param	distance			indent from the enemy`s center
+** @return	final coordinate
+*/
 
 static int			get_final_distance_coordinate(char coordinate_axis, \
 													int distance)
@@ -29,6 +56,14 @@ static int			get_final_distance_coordinate(char coordinate_axis, \
 	return (coord);
 }
 
+/*
+** Defines the start coordinate for the current fill layer.
+**
+** @param	coordinate_axis		the coordinate to be determined
+** @param	distance			indent from the enemy`s center
+** @return	start coordinate
+*/
+
 static int			get_start_distance_coordinate(char coordinate_axis, \
 													int distance)
 {
@@ -40,6 +75,13 @@ static int			get_start_distance_coordinate(char coordinate_axis, \
 	return (coord);
 }
 
+/*
+** Calculates the temperature value for a specific map cell.
+**
+** @param	distance_counter		indent from the enemy`s center
+** @return	temperature_counter		temperature value
+*/
+
 static int			get_temperature_value(int y, int x, \
 										int distance_counter)
 {
@@ -48,11 +90,11 @@ static int			get_temperature_value(int y, int x, \
 	if (g_map->field[y][x] != '.')
 		return (g_map->field[y][x]);
 	temperature_counter = distance_counter;
-	if (is_square_zone(g_square->central, y, x))
+	if (is_rectangle_zone(g_rectangle->central, y, x))
 		temperature_counter -= 2;
-	if (is_square_zone(g_square->low, y, x))
+	if (is_rectangle_zone(g_rectangle->low, y, x))
 		temperature_counter += 2;
-	if (is_square_zone(g_square->optimum, y, x))
+	if (is_rectangle_zone(g_rectangle->optimum, y, x))
 		temperature_counter -= 2;
 	if (is_near_border(y, x))
 		temperature_counter -= 4;
@@ -60,6 +102,17 @@ static int			get_temperature_value(int y, int x, \
 		temperature_counter -= 5;
 	return (temperature_counter);
 }
+
+/*
+** Fills a specific map layer around the enemy’s 
+** center with temperature values.
+**
+** @param	start_x		x-position which layer begins
+** @param	start_y		y-position which layer begins
+** @param	final_x		x-position which layer ends
+** @param	final_y		y-position which layer ends
+** @param	distance_counter	indent from the enemy`s center
+*/
 
 static void			fill_heat_map_layer(int start_x, int start_y, \
 										int final_x, int final_y, \
