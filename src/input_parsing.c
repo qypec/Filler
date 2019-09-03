@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 17:26:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/02 17:22:22 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 14:16:34 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int					piece_parsing(void)
 }
 
 /*
-** Parses the first line received from the virtual machine 
+** Parses the first line received from the virtual machine
 ** to determine the player’s marker.
 **
 ** @param	N/A

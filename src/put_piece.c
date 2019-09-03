@@ -6,11 +6,16 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 18:02:11 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/03 13:27:54 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 14:18:15 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
+
+/*
+** @param	N/A
+** @return	y	coordinate to start brute force
+*/
 
 int					get_start_coordinate(void)
 {
@@ -31,6 +36,13 @@ int					get_start_coordinate(void)
 	}
 	return (0);
 }
+
+/*
+** Checks whether it is possible to put a
+** fragment at the current coordinates.
+**
+** @param	x, y	current position
+*/
 
 int					is_correct_location(int y, int x)
 {
@@ -64,7 +76,7 @@ int					is_correct_location(int y, int x)
 }
 
 /*
-** Counts the sum of thermal values and overwrites
+** Counts the sum of thermal values and rewrites
 ** the score structure if the score is the smallest.
 **
 ** @param	x, y	current position
@@ -99,7 +111,7 @@ void				update_min_score(t_score *min_score, int y, int x)
 
 /*
 ** Enumeration of possible locations of a piece.
-** Search for the smallest sum of thermal 
+** Search for the smallest sum of thermal
 ** values covered by a piece.
 */
 

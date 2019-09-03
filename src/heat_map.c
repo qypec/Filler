@@ -6,14 +6,14 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 21:11:26 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/03 12:01:28 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 14:15:36 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
 /*
-** Returns the coordinate of the opponent’s center according 
+** Returns the coordinate of the opponent’s center according
 ** to the given coordinate axis.
 */
 
@@ -104,7 +104,7 @@ static int			get_temperature_value(int y, int x, \
 }
 
 /*
-** Fills a specific map layer around the enemy’s 
+** Fills a specific map layer around the enemy’s
 ** center with temperature values.
 **
 ** @param	start_x		x-position which layer begins

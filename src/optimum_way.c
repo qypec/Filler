@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 21:10:58 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/03 11:38:15 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 14:16:47 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ static void			get_rectangles_free_space(t_rectangle *rectangle)
 }
 
 /*
-** The central rectangle artificially extends to the borders 
-** of the map in two ways. The optimal path is the one in which 
+** The central rectangle artificially extends to the borders
+** of the map in two ways. The optimal path is the one in which
 ** the largest number of free cells.
 **
 ** @param	N/A

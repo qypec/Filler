@@ -6,7 +6,7 @@
 /*   By: yquaro <yquaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/22 17:16:10 by yquaro            #+#    #+#             */
-/*   Updated: 2019/09/03 11:36:22 by yquaro           ###   ########.fr       */
+/*   Updated: 2019/09/03 14:12:17 by yquaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ t_ghostly			*g_rectangle;
 t_token				*g_map;
 t_token				*g_piece;
 char				g_marker;
-int					g_fd;
-
-int					is_marker(char c, char marker);
 
 void				init_token(void);
 void				tokendel(void);
@@ -72,13 +69,13 @@ void				score_del(t_score **min_score);
 
 t_rectangle			*malloc_rectangle(void);
 
-int					get_rivals_center(char coordinate_axis);
-void				fill_central_rectangles_coordinates(void);
-void				choose_optimum_way(void);
-
 int					get_player_number(void);
 int					map_parsing(void);
 int					piece_parsing(void);
+
+int					is_marker(char c, char marker);
+void				fill_central_rectangles_coordinates(void);
+void				choose_optimum_way(void);
 int					make_a_move(void);
 
 void				create_heat_map(void);

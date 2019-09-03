@@ -1,4 +1,4 @@
-# Base variables for minishell
+# Base variables for filler
 
 CC = gcc
 CFLAGS = -g -c -Wall -Wextra -Werror
