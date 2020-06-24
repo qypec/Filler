@@ -1,7 +1,0 @@
-*.o
-/.vscode
-*.a
-yquaro.filler
-/a.out
-/*.dSYM
-filler.trace
